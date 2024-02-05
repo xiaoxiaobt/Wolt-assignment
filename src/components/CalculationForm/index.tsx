@@ -2,7 +2,7 @@ import { FloatField, IntegerField, DatePickerField } from "./Formfield"
 import { useFormik } from "formik";
 import { Button, Grid } from "@mui/material";
 import * as Yup from "yup";
-import * as dayjs from 'dayjs'
+import dayjs from 'dayjs'
 import calculateDeliveryCost from "../../utils/Calculator";
 import { EmptyResult, Result } from "../../types";
 
