@@ -3,8 +3,8 @@ import { useFormik } from "formik";
 import { Button, Grid } from "@mui/material";
 import * as Yup from "yup";
 import dayjs from 'dayjs'
-import calculateDeliveryCost from "../../utils/Calculator";
-import { EmptyResult, Result } from "../../types";
+import calculateDeliveryCost from "../../utils/calculator";
+import { Result } from "../../types";
 
 const validationSchema = Yup.object({
     cartValue: Yup.string()
@@ -29,24 +29,24 @@ const validationSchema = Yup.object({
         .required("Required")
 });
 
-
-// const initialValues = {
-//     costType: null ,
-//     deliveryCost: 0,
-//     smallOrderSurcharge: 0, distanceCharge: DISTANCE_BASE_COST,
-//     distanceSurcharge: 0, numberOfItemsSurcharge: 0,
-//     rushHourSurcharge: 0, capPriceDeduction: 0
-// };}
-
 interface CalculationFormProps {
-    setCalculationResult: (result: Result | EmptyResult) => void;
+    setCalculationResult: (result: Result | undefined) => void;
+    setLocale: (locale: string) => void;
 }
 
-
-const CalculationForm = ({setCalculationResult}: CalculationFormProps) => {
-
-
+const CalculationForm = ({ setCalculationResult, setLocale }: CalculationFormProps) => {
+    /**
+     * CalculationForm is a component that creates a form for the user to input the cart 
+     * value, delivery distance, number of items, and time.
+     * 
+     * Two buttons are provided: "Clear" and "Calculate". If the form is invalid, the
+     * "Calculate" button is disabled.
+     * 
+     * @param setCalculationResult - A function to set the calculation result
+     * @param setLocale - A function to set the locale based on user input
+     */
     const formik = useFormik({
+        validateOnMount: true,
         initialValues: {
             cartValue: '',
             deliveryDistance: '',
@@ -55,16 +55,22 @@ const CalculationForm = ({setCalculationResult}: CalculationFormProps) => {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
+            if (values.cartValue.includes(",")) setLocale("fi-FI");
             values.cartValue = values.cartValue.replace(",", ".");
             const calculatorInput = {
                 cart: parseFloat(values.cartValue),
                 distance: parseInt(values.deliveryDistance),
                 numberOfItems: parseInt(values.numberOfItems),
-                rushHour: values.time.hour() >= 15 && values.time.hour() <= 19 && values.time.day() == 5,
+                rushHour: values.time.hour() >= 15 && values.time.hour() <= 19 && values.time.day() === 5,
             };
             const costs = calculateDeliveryCost(calculatorInput);
             setCalculationResult(costs);
-            // alert(JSON.stringify(costs, null, 2));
+            // Pause for a moment to let the DOM update
+            setTimeout(() => {
+                document.getElementById("results")?.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }, 100);
         }
     });
     return (
@@ -111,11 +117,20 @@ const CalculationForm = ({setCalculationResult}: CalculationFormProps) => {
                     error={formik.touched.time && Boolean(formik.errors.time)}
                     setFieldValue={formik.setFieldValue}
                 />
-                <Grid item>
+                <Grid item spacing={2}>
+                    <Button
+                        color="info"
+                        onClick={(e) => { formik.handleReset(e); formik.setFieldValue('time', dayjs()); setCalculationResult(undefined) }}
+                        sx={{ margin: "1em", outline: "1px solid white", color: "white" }}
+                    >
+                        Clear
+                    </Button>
                     <Button
                         type="submit"
                         variant="contained"
                         color="primary"
+                        disabled={!formik.isValid}
+                        sx={{ margin: "1em" }}
                     >
                         Calculate
                     </Button>

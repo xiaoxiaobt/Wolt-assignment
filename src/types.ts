@@ -7,6 +7,7 @@ export interface Result {
     distanceCharge: number
     distanceSurcharge: number
     numberOfItemsSurcharge: number
+    bulkItemSurcharge: number
     rushHourSurcharge: number
     capPriceDeduction: number
 }
@@ -17,5 +18,3 @@ export interface CalculatorInput {
     numberOfItems: number
     rushHour: boolean
 }
-
-export interface EmptyResult { }

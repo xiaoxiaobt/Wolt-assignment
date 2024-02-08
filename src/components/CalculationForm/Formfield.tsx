@@ -5,8 +5,11 @@ import * as dayjs from 'dayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import MyActionBar from "./ActionBar";
+
 
 interface NumberProps {
+  /** NumberProps contains props used in number-textfield */
   value: string;
   label: string;
   min: number;
@@ -15,12 +18,14 @@ interface NumberProps {
 }
 
 interface TimeProps {
+  /** TimeProps contains props used in datetime-textfield */
   value: dayjs.Dayjs;
   label: string;
   dataTestID: string;
 }
 
 interface FormikProps {
+  /** FormikProps contains props used in formik */
   onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined;
   onBlur: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined;
   error: boolean | undefined;
@@ -32,7 +37,9 @@ interface NumberFormikProps extends NumberProps, FormikProps { }
 interface TimeFormikProps extends TimeProps, FormikProps { }
 
 export const IntegerField = ({ label, min, dataTestID, endAdornment, value, onChange, onBlur, error, helperText }: NumberFormikProps) => {
-
+  /** 
+   * IntegerField is a component that creates a textfield for integer input 
+   */
   return (
     <div style={{ marginBottom: "1em" }}>
       <TextFieldMUI
@@ -62,6 +69,10 @@ export const IntegerField = ({ label, min, dataTestID, endAdornment, value, onCh
 
 
 export const FloatField = ({ label, min, dataTestID, endAdornment, value, onChange, onBlur, error, helperText }: NumberFormikProps) => {
+  /** 
+   * FloatField is a component that creates a textfield for float input
+   * It accepts either comma and dot as decimal separator 
+   */
   return (
     <div style={{ marginBottom: "1em" }}>
       <TextFieldMUI
@@ -91,7 +102,9 @@ export const FloatField = ({ label, min, dataTestID, endAdornment, value, onChan
 
 
 export const DatePickerField = ({ label, value, dataTestID, setFieldValue, onBlur, error, helperText }: TimeFormikProps) => {
-
+  /** 
+   * DatePickerField is a component that creates a textfield for date input
+   */
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DateTimePicker
@@ -111,8 +124,14 @@ export const DatePickerField = ({ label, value, dataTestID, setFieldValue, onBlu
             },
             onBlur: onBlur,
             error: error,
-            helperText: helperText
+            helperText: helperText,
+          },
+          openPickerButton: {
+            id: "openPickerButton"  // Used for testing
           }
+        }}
+        slots={{
+          actionBar: MyActionBar
         }}
       />
     </LocalizationProvider>
