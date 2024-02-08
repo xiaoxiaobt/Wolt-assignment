@@ -84,18 +84,10 @@ const CalculationResultDisplay = ({ calculationResult, locale }: CalculationResu
                             </TableBody>
                         </Table>
                     </TableContainer>
-
-                    <p>
-                        Your order is {formatNumberToCurrency(200 - calculationResult.deliveryCost, undefined, undefined, locale)} away from free delivery for large orders.
-                    </p>
                 </>
             }
         </div>
     )
 }
-
-{/* <Tooltip title="Add" placement="top" style={{ display: "flex", alignItems: 'center' }}>
-    <InfoOutlinedIcon />
-</Tooltip> */}
 
 export default CalculationResultDisplay
