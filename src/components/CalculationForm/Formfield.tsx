@@ -53,7 +53,8 @@ export const IntegerField = ({ label, min, dataTestID, endAdornment, value, onCh
         value={value}
         InputProps={{
           inputProps: {
-            "data-test-id": dataTestID
+            "data-test-id": dataTestID,
+            "inputMode": "numeric",
           },
           endAdornment: endAdornment
         }}
@@ -86,7 +87,8 @@ export const FloatField = ({ label, min, dataTestID, endAdornment, value, onChan
         value={value}
         InputProps={{
           inputProps: {
-            "data-test-id": dataTestID
+            "data-test-id": dataTestID,
+            "inputMode": "decimal"
           },
           endAdornment: endAdornment,
         }}

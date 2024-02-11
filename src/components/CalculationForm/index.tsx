@@ -117,7 +117,7 @@ const CalculationForm = ({ setCalculationResult, setLocale }: CalculationFormPro
                     error={formik.touched.time && Boolean(formik.errors.time)}
                     setFieldValue={formik.setFieldValue}
                 />
-                <Grid item spacing={2}>
+                <Grid item>
                     <Button
                         color="info"
                         onClick={(e) => { formik.handleReset(e); formik.setFieldValue('time', dayjs()); setCalculationResult(undefined) }}

@@ -28,6 +28,7 @@ The following design choices were made to ensure the best possible user experien
 - Consistent and clear error messages
 - Locale support (English and Finnish)
   - When user inputs a number with a comma as the decimal separator, the input accepts it and displays results with the same format
+- Input mode support (numerical keyboard for number fields on mobile devices)
 - Unit tests
 - End-to-end tests
 - Flexible and maintainable codebase (values not hard-coded, comments, etc.)

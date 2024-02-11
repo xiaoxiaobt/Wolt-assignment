@@ -9,7 +9,20 @@
   display: block !important;
 }
 
-.MuiTableCell-root,
-#time {
+.MuiTableCell-root {
   color: white !important;
+}
+
+#fee {
+  animation: scale 1s both;
+  animation-delay: 0.5s;
+  display: inline-block;
+}
+
+@keyframes scale {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  50% { transform: rotate(0deg) scale(1.5);}
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
 }
