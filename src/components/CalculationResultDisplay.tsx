@@ -1,11 +1,11 @@
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
 import { Result } from "../types"
 import { formatNumberToCurrency } from "../utils/helper"
 
 
 interface CalculationResultDisplayProps {
-    calculationResult: Result | undefined;
-    locale: string;
+    calculationResult: Result | undefined
+    locale: string
 }
 
 const CalculationResultDisplay = ({ calculationResult, locale }: CalculationResultDisplayProps) => {
@@ -73,7 +73,7 @@ const CalculationResultDisplay = ({ calculationResult, locale }: CalculationResu
                                 {calculationResult.rushHourSurcharge !== 0 &&
                                     <TableRow>
                                         <TableCell />
-                                        <TableCell align="left">Rush hour surcharge <span style={{ fontSize: 'smaller', color: '#525252' }}>×1.2</span></TableCell>
+                                        <TableCell align="left">Rush hour surcharge <span style={{ fontSize: 'smaller', color: '#525252' }}>×{process.env.RUSH_HOUR_MULTIPLIER}</span></TableCell>
                                         <TableCell align="right">{formatNumberToCurrency(calculationResult.rushHourSurcharge, undefined, undefined, locale)}</TableCell>
                                     </TableRow>
                                 }

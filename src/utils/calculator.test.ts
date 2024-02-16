@@ -1,4 +1,4 @@
-import calculateDeliveryCost from './calculator';
+import calculateDeliveryCost from './calculator'
 
 describe('calculateDeliveryCost function', () => {
     test('free delivery', () => {
@@ -6,8 +6,8 @@ describe('calculateDeliveryCost function', () => {
             "bulkItemSurcharge": 0, "capPriceDeduction": 0, "costType": "FreeDeliveryForLargeOrders",
             "deliveryCost": 0, "distanceCharge": 0, "distanceSurcharge": 0, "numberOfItemsSurcharge": 0,
             "rushHourSurcharge": 0, "smallOrderSurcharge": 0
-        });
-    });
+        })
+    })
 
     test('standard delivery', () => {
         expect(calculateDeliveryCost({ cart: 20, distance: 2000, numberOfItems: 24, rushHour: true })).toStrictEqual({
@@ -21,12 +21,12 @@ describe('calculateDeliveryCost function', () => {
             "rushHourSurcharge": 3.04,
             "smallOrderSurcharge": 0,
         })
-    });
+    })
 
     test('negative cart value', () => {
         expect(() => calculateDeliveryCost({ cart: -20, distance: 2000, numberOfItems: 24, rushHour: true })).toThrow(
             'Total should be non-negative.'
-        );
-    });
+        )
+    })
 
-});
+})

@@ -5,6 +5,16 @@
   text-align: center;
 }
 
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
 .MuiPickersLayout-root {
   display: block !important;
 }

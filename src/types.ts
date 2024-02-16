@@ -1,4 +1,4 @@
-export type DeliveryFeeType = "FreeDeliveryForLargeOrders" | "StandardDelivery";
+export type DeliveryFeeType = "FreeDeliveryForLargeOrders" | "StandardDelivery"
 
 export interface Result {
     costType: DeliveryFeeType

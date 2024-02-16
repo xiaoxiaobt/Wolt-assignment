@@ -1,36 +1,36 @@
 import {
   TextField as TextFieldMUI,
-} from "@mui/material";
+} from "@mui/material"
 import * as dayjs from 'dayjs'
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import MyActionBar from "./ActionBar";
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
+import MyActionBar from "./ActionBar"
 
 
 interface NumberProps {
   /** NumberProps contains props used in number-textfield */
-  value: string;
-  label: string;
-  min: number;
-  dataTestID: string;
-  endAdornment?: string;
+  value: string
+  label: string
+  min: number
+  dataTestID: string
+  endAdornment?: string
 }
 
 interface TimeProps {
   /** TimeProps contains props used in datetime-textfield */
-  value: dayjs.Dayjs;
-  label: string;
-  dataTestID: string;
+  value: dayjs.Dayjs
+  label: string
+  dataTestID: string
 }
 
 interface FormikProps {
   /** FormikProps contains props used in formik */
-  onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined;
-  onBlur: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined;
-  error: boolean | undefined;
-  helperText?: string | false | undefined;
-  setFieldValue?: (field: string, value: any, shouldValidate?: boolean | undefined) => void; // eslint-disable-line @typescript-eslint/no-explicit-any
+  onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined
+  onBlur: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined
+  error: boolean | undefined
+  helperText?: string | false | undefined
+  setFieldValue?: (field: string, value: any, shouldValidate?: boolean | undefined) => void // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 interface NumberFormikProps extends NumberProps, FormikProps { }
@@ -65,8 +65,8 @@ export const IntegerField = ({ label, min, dataTestID, endAdornment, value, onCh
         onBlur={onBlur}
       />
     </div>
-  );
-};
+  )
+}
 
 
 export const FloatField = ({ label, min, dataTestID, endAdornment, value, onChange, onBlur, error, helperText }: NumberFormikProps) => {
@@ -99,8 +99,8 @@ export const FloatField = ({ label, min, dataTestID, endAdornment, value, onChan
         onBlur={onBlur}
       />
     </div>
-  );
-};
+  )
+}
 
 
 export const DatePickerField = ({ label, value, dataTestID, setFieldValue, onBlur, error, helperText }: TimeFormikProps) => {
@@ -138,5 +138,5 @@ export const DatePickerField = ({ label, value, dataTestID, setFieldValue, onBlu
       />
     </LocalizationProvider>
 
-  );
-};
+  )
+}

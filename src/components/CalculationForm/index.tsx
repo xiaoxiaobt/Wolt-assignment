@@ -1,37 +1,37 @@
 import { FloatField, IntegerField, DatePickerField } from "./Formfield"
-import { useFormik } from "formik";
-import { Button, Grid } from "@mui/material";
-import * as Yup from "yup";
+import { useFormik } from "formik"
+import { Button, Grid } from "@mui/material"
+import * as Yup from "yup"
 import dayjs from 'dayjs'
-import calculateDeliveryCost from "../../utils/calculator";
-import { Result } from "../../types";
+import calculateDeliveryCost from "../../utils/calculator"
+import { Result } from "../../types"
 
 const validationSchema = Yup.object({
     cartValue: Yup.string()
         .required("Required")
         .matches(/^[0-9]+([.,][0-9]{0,2})?$/, 'Must be a valid float')
         .test('is-non-negative', 'Must be a non-negative float', (value) => {
-            return parseFloat(value.replace(",", ".")) >= 0;
+            return parseFloat(value.replace(",", ".")) >= 0
         }),
     deliveryDistance: Yup.string()
         .required("Required")
         .matches(/^\d+$/, 'Must be a valid integer')
         .test('is-non-negative', 'Must be a non-negative integer', (value) => {
-            return parseInt(value) >= 0;
+            return parseInt(value) >= 0
         }),
     numberOfItems: Yup.string()
         .required("Required")
         .matches(/^\d+$/, 'Must be a valid integer')
         .test('is-larger-than-zero', 'Must be larger than 0', (value) => {
-            return parseInt(value) > 0;
+            return parseInt(value) > 0
         }),
     time: Yup.date()
         .required("Required")
-});
+})
 
 interface CalculationFormProps {
-    setCalculationResult: (result: Result | undefined) => void;
-    setLocale: (locale: string) => void;
+    setCalculationResult: (result: Result | undefined) => void
+    setLocale: (locale: string) => void
 }
 
 const CalculationForm = ({ setCalculationResult, setLocale }: CalculationFormProps) => {
@@ -55,24 +55,24 @@ const CalculationForm = ({ setCalculationResult, setLocale }: CalculationFormPro
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            if (values.cartValue.includes(",")) setLocale("fi-FI");
-            values.cartValue = values.cartValue.replace(",", ".");
+            if (values.cartValue.includes(",")) setLocale("fi-FI")
+            values.cartValue = values.cartValue.replace(",", ".")
             const calculatorInput = {
                 cart: parseFloat(values.cartValue),
                 distance: parseInt(values.deliveryDistance),
                 numberOfItems: parseInt(values.numberOfItems),
                 rushHour: values.time.hour() >= 15 && values.time.hour() <= 19 && values.time.day() === 5,
-            };
-            const costs = calculateDeliveryCost(calculatorInput);
-            setCalculationResult(costs);
+            }
+            const costs = calculateDeliveryCost(calculatorInput)
+            setCalculationResult(costs)
             // Pause for a moment to let the DOM update
             setTimeout(() => {
                 document.getElementById("results")?.scrollIntoView({
                     behavior: 'smooth'
-                });
-            }, 100);
+                })
+            }, 100)
         }
-    });
+    })
     return (
         <div>
             <form onSubmit={formik.handleSubmit}>
@@ -137,8 +137,8 @@ const CalculationForm = ({ setCalculationResult, setLocale }: CalculationFormPro
                 </Grid>
             </form>
         </div>
-    );
+    )
 
-};
+}
 
-export default CalculationForm;
+export default CalculationForm

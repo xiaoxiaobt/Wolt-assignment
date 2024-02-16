@@ -26,12 +26,12 @@ export const getClientLocale = () => {
      */
     if (typeof Intl !== 'undefined') {
         try {
-            return Intl.NumberFormat().resolvedOptions().locale;
+            return Intl.NumberFormat().resolvedOptions().locale
         } catch (err) {
             console.error("Cannot get locale from Intl")
-            return 'en-US';
+            return 'en-US'
         }
     }
     console.error("Intl is not available")
-    return 'en-US';
+    return 'en-US'
 }

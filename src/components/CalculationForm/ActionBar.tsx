@@ -1,6 +1,6 @@
-import Button from "@mui/material/Button/Button";
-import DialogActions from "@mui/material/DialogActions/DialogActions";
-import { PickersActionBarProps } from "@mui/x-date-pickers/PickersActionBar";
+import Button from "@mui/material/Button/Button"
+import DialogActions from "@mui/material/DialogActions/DialogActions"
+import { PickersActionBarProps } from "@mui/x-date-pickers/PickersActionBar"
 
 const MyActionBar = ({
     onAccept,
@@ -20,7 +20,7 @@ const MyActionBar = ({
                 <Button onClick={onSetToday}>Now</Button>
             </DialogActions >
         </div>
-    );
-};
+    )
+}
 
-export default MyActionBar;
+export default MyActionBar
