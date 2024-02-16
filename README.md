@@ -2,7 +2,7 @@
 
 ## URL
 
-The project is accessible at <https://wolt.web.taige.wang/>.
+The project is accessible at <https://wolt-assignment.web.taige.wang/>.
 
 ## Description
 

@@ -10,7 +10,6 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "build:docs": "tsc && vite build --outDir docs --base /wolt-assignment/docs/",
     "lint": "eslint . --ext ts,tsx,md --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "cypress:open": "cypress open",
