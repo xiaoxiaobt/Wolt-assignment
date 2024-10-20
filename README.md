@@ -2,7 +2,7 @@
 
 ## URL
 
-The project is accessible at <https://wolt-assignment.web.taige.wang/>.
+The project is accessible at <https://wolt-assignment.taige.wang/>.
 
 ## Description
 
@@ -42,7 +42,7 @@ Run the project with:
 npm start
 ```
 
-The project is also accessible at <https://wolt.web.taige.wang/>.
+The project is also accessible at <https://wolt-assignment.taige.wang/>.
 
 ## Accessibility, development, and design choices
 
